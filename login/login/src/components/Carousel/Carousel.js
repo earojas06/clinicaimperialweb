@@ -2,7 +2,13 @@ import React ,{ useState,useEffect,useCallback } from 'react'
 import { client } from '../../client'
 import  CarouselSlide  from '../Carousel/CarouselSlide'
 
+import {Swiper,SwiperSlide} from 'swiper/react'
+import SwiperCore,{ Navigation } from 'swiper'
+import 'swiper'
+//import 'swiper/components/Navigation/Navigation.scss'
 
+
+SwiperCore.use([Navigation])
 
 const Carousel = () => {
     const [isCarouselLoading,setIsCarouselLoading]= useState(false)
@@ -15,7 +21,10 @@ const Carousel = () => {
                 const slideTitle = fields.titulo
                 const slideDescription = fields.descripcion
                 const slideBg = fields.imagen.fields.file.url 
-                const updateSlide ={id,slideTitle,slideDescription,slideBg}
+                const slideLogo = fields.logo.fields.file.url
+                const slideemailicon =fields.emailicon.fields.file.url
+                const slidepasswordicon=fields.passwordicon.fields.file.url
+                const updateSlide ={id,slideTitle,slideDescription,slideBg,slideLogo,slideemailicon,slidepasswordicon}
                 return updateSlide
         })
 
@@ -46,18 +55,26 @@ const Carousel = () => {
     },[getCarouselSlides] )
 
     console.log(carouselSlides)
+    if (!Array.isArray(carouselSlides) || !carouselSlides.length) {
+        return null
+    }
 
     return(
-        <div>
+        <div className='carousel'>
+            <Swiper navigation>
                 {carouselSlides.map((item) => {
-                    const {id,slideBg,slideTitle,slideDescription}=item
+                    const {id,slideBg,slideTitle,slideDescription,slideLogo,slideemailicon,slidepasswordicon}=item
                     return(
-                       <CarouselSlide key={id} slideTitle={slideTitle} slideDescription={slideDescription}
-                        slideBg={slideBg} />
+                        <SwiperSlide key={id}>
+                              <CarouselSlide key={id} slideTitle={slideTitle} slideDescription={slideDescription}
+                        slideBg={slideBg} slideLogo= {slideLogo} slideemailicon={slideemailicon} slidepasswordicon={slidepasswordicon} />
 
+                        </SwiperSlide>
+                     
                     )
 
                 })}
+            </Swiper>
         </div> 
 
     )
