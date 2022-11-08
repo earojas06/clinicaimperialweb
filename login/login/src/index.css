@@ -1,0 +1,33 @@
+@import url('./partials/loginsub.css');
+
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*{ scroll-behavior: smooth;}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--textColor);
+  font-family:  'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+section{
+  padding: 100px;
+  @media (max-width: 991px) {
+      padding: 50px 20px;
+  }
+
+}
