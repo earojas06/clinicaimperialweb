@@ -39,7 +39,7 @@ const {id,slideTitle,slideDescription,slideBg,slideLogo,slideemailicon,slidepass
                             
                             <p className="link">                             
                             <a href="*" className='btn'>Olvido su contraseña?</a>                           
-                            {/*<a href="#">Sign Up</a>-->*/}
+                    
                             </p>                                  
                         </div>
                 </div>
